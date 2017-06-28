@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/" reloadable="true">
     <Resource
-        name="jdbc/edu_system"
+        name="jdbc/delicacy"
         type="javax.sql.DataSource"
         maxActive="20"
         maxIdle="20"
