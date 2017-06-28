@@ -3,9 +3,11 @@ package com.delicacy.user;
 public class UserBean {
 	private String userID;			//用户ID
 	private String userName;		//用户名
+	private int userAge;			//用户年龄
 	private String userPassword;	//用户密码
 	private String userAddress;		//用户地址
 	private String phoneNumber;		//用户手机号码
+	private String mail;			//用户邮箱地址
 	private String invitation;		//用户填写的邀请码	
 	private String ownInvitation;	//用户个人邀请码
 	
@@ -22,6 +24,13 @@ public class UserBean {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public int getUserAge() {
+		return userAge;
+	}
+
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
 	}
 	public String getUserPassword() {
 		return userPassword;
@@ -40,6 +49,12 @@ public class UserBean {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getMail(){
+		return mail;
+	}
+	public void setMail(String mail){
+		this.mail=mail;
 	}
 	public String getInvitation() {
 		return invitation;

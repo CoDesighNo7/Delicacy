@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.delicacy.dao.LogininfoDao;
+import com.delicacy.dao.UserinfoDao;
+import com.delicacy.user.UserBean;
 //@WebServlet("/home/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
@@ -56,12 +58,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String user=request.getParameter("user");
+		String username=request.getParameter("user");
 		String password=request.getParameter("password");
 		LogininfoDao logininfo=new LogininfoDao();
-		if(logininfo.isCorrect(user, password, 1)){
+		if(logininfo.isCorrect(username, password, 1)){
+			UserBean user=new UserinfoDao().selectUserByID(username);
 			request.getSession().setAttribute("user", user);
-			request.getSession().setAttribute("password", password);
 			response.sendRedirect("Home.jsp");
 		}
 		else
