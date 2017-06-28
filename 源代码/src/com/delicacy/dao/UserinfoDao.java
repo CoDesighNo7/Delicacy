@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.delicacy.user.UserBean;
 
 public class UserinfoDao extends BaseDao{
-	public UserinfoDao(){}
+	//public UserinfoDao(){}
 	public UserBean selectUserPasswordByID(String id){
 		UserBean user=new UserBean();
 		String sql="select id,password from logininfo where userID=?";
@@ -26,11 +26,6 @@ public class UserinfoDao extends BaseDao{
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		UserinfoDao userinfoDao=new UserinfoDao();
-		UserBean userbean=userinfoDao.selectUserPasswordByID("1001");
-		System.out.println("password:"+userbean.getUserPassword());
-	}
+	
 
 }
