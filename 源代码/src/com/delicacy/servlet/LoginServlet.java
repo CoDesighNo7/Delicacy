@@ -61,8 +61,11 @@ public class LoginServlet extends HttpServlet {
 		LogininfoDao logininfo=new LogininfoDao();
 		if(logininfo.isCorrect(user, password, 1)){
 			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("password", password);
 			response.sendRedirect("Home.jsp");
 		}
+		else
+			response.sendRedirect("Login.jsp");
 
 	}
 

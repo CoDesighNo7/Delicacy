@@ -23,5 +23,16 @@ public class BaseDao {
     public void getConnection(String sql) throws SQLException {
     	conn=dataSource.getConnection();		//获取一个数据库连接
     	pstmt=conn.prepareStatement(sql);		//根据sql语句生成一个语句对象
+    	resultSet=null;
+    	resultRow=0;
+    }
+    public void close(){
+    	try {
+			conn.close();
+	    	pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
