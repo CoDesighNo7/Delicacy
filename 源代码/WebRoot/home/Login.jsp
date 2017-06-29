@@ -59,29 +59,10 @@
 					<a href="Register.jsp" class="zcnext am-fr am-btn-default">注册</a>
 					<br />
             	</div>
-				<div class="partner">		
-					<h3>合作账号</h3>
-					<div class="am-btn-group">
-						<li><a href="#"><i class="am-icon-qq am-icon-sm"></i><span>QQ登录</span></a></li>
-						<li><a href="#"><i class="am-icon-weibo am-icon-sm"></i><span>微博登录</span> </a></li>
-						<li><a href="#"><i class="am-icon-weixin am-icon-sm"></i><span>微信登录</span> </a></li>
-					</div>
-				</div>	
 				
 				</div>
 			</div>
 		</div>
-
-					<div class="footer " align="center">
-						<div class="footer-hd ">
-							<p>Delicacy
-							</p>
-						</div>
-						<div class="footer-bd " align="center">
-							<p>
-								<em>© 2017-2017 Delicacy.com 版权所有</em>
-							</p>
-						</div>
-					</div>
+		<jsp:include page="Footer.jsp"/>
   </body>
 </html>

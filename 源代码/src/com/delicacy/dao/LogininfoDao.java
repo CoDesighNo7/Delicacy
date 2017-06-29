@@ -3,6 +3,7 @@ package com.delicacy.dao;
 import java.sql.SQLException;
 
 public class LogininfoDao extends BaseDao {
+	//根据id，password，identity判断用户登录信息是否正确
 	public boolean isCorrect(String id,String password,int identity){
 		String sql="select id,password from logininfo where id=? and identity=1";
 		String truePassword="0";
@@ -21,9 +22,10 @@ public class LogininfoDao extends BaseDao {
 		if(truePassword.equals(password)){
 			return true;
 		}
-		else return false;
+		else 
+			return false;
 	}
-	
+	//向logininfo表中插入用户登陆信息，返回值为表中修改行数
 	public int insertLogininfo(String id,String password,int identity){
 		String sql="insert into logininfo values(?,?,?)";
 		try {
@@ -39,6 +41,7 @@ public class LogininfoDao extends BaseDao {
 		close();
 		return resultRow;
 	}
+	//从用户表中删除用户登陆信息，返回值为表中修改的行数
 	public int deleteLogininfo(String id,int identity){
 		String sql="delete from logininfo where id=?";
 		try {

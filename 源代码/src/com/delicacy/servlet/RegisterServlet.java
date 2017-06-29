@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.delicacy.dao.LogininfoDao;
 import com.delicacy.dao.UserinfoDao;
 import com.delicacy.user.UserBean;
-//@WebServlet("/home/LoginServlet")
-public class LoginServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+public class RegisterServlet extends HttpServlet {
+
 	/**
 	 * Constructor of the object.
 	 */
-	public LoginServlet() {
+	public RegisterServlet() {
 		super();
 	}
 
@@ -44,6 +42,8 @@ public class LoginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.setContentType("text/html");
+		
 	}
 
 	/**
@@ -58,19 +58,35 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html");
 		//获取表单信息
-		String username=request.getParameter("user");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
 		String password=request.getParameter("password");
-		LogininfoDao logininfo=new LogininfoDao();
-		//判断用户登陆信息是否正确，若正确，跳转到主页。
-		if(logininfo.isCorrect(username, password, 1)){
-			UserBean user=new UserinfoDao().selectUserByID(username);
+		String passwordRepeat=request.getParameter("passwordRepeat");
+		boolean userExist=new UserinfoDao().isUserExist(phone, email);		//判断手机号或邮箱是否已被注册
+		//若已被注册，跳转回注册界面
+		if(userExist){
+			response.sendRedirect("Register.jsp");
+			return ;
+		}
+		UserBean user=null;
+		//向userinfo 表中插入用户信息
+		if(email!=null||phone!=null){
+			int invitation=email.hashCode();
+			user=new UserinfoDao().insertUser(email,phone,String.valueOf(email.hashCode()));
+		}
+		//若插入成功，将user添加到session作用域中，向登录信息表中添加新用户登录信息，跳转到主页
+		if(user!=null){
+			int login=new LogininfoDao().insertLogininfo(user.getUserID(), password, 1);
 			request.getSession().setAttribute("user", user);
 			response.sendRedirect("Home.jsp");
+			return; 
 		}
+		//若插入失败，跳转回注册界面
 		else
-			response.sendRedirect("Login.jsp");
-
+			response.sendRedirect("Register.jsp");
+		
 	}
 
 	/**
