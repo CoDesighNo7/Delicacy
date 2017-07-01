@@ -81,11 +81,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal" action="" method="post">
+							<form class="am-form am-form-horizontal" action="UpdateUserInformation" method="post">
 								<div class="am-form-group">
 									<label for="user-name" class="am-form-label">姓名</label>
 									<div class="am-form-content">
-										<input type="text" id="username" value="${user.getUserName() }" placeholder="name">
+										<input type="text" name="username" id="username" value="${user.getUserName() }" placeholder="${user.getUserName() }">
 									</div>
 								</div>
 
@@ -93,13 +93,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> 男
+											<input type="radio" name="sex" value="男" data-am-ucheck> 男
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> 女
+											<input type="radio" name="sex" value="女" data-am-ucheck> 女
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密
+											<input type="radio" name="sex" value="保密" data-am-ucheck> 保密
 										</label>
 									</div>
 								</div>
@@ -108,25 +108,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<label for="user-birth" class="am-form-label">生日</label>
 									<div class="am-form-content birth">
 										<div class="birth-select">
-											<select data-am-selected>
+											<select data-am-selected name="birth_year">
 												<c:forEach var="birth-select" items="" varStatus="status">
 													
 												</c:forEach>
-												<option value="a">2015</option>
-												<option value="b">1987</option>
+												
+												<option value="1988">1988</option>
+												<option value="1987">1987</option>
 											</select>
 											<em>年</em>
 										</div>
 										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">12</option>
-												<option value="b">8</option>
+											<select data-am-selected name="birth_month">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
 											</select>
 											<em>月</em></div>
 										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">21</option>
-												<option value="b">23</option>
+											<select data-am-selected size="5" name="birth_day" multiple="multiple">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
 											</select>
 											<em>日</em></div>
 									</div>
@@ -170,7 +191,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 								</div>
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger">保存修改</div>
+									<div class="am-btn am-btn-danger">
+										<input type="submit" value="保存修改">
+									保存修改</div>
+									
 								</div>
 
 							</form>
@@ -190,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="person">
 						<a href="#">个人资料</a>
 						<ul>
-							<li> <a href="address.html">收货地址</a></li>
+							<li> <a href="/delicacy/person/AddAddress?userID=${user.getUserID()}">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">

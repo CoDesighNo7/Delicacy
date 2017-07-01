@@ -1,0 +1,94 @@
+package com.delicacy.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.delicacy.dao.*;
+import com.delicacy.user.*;
+@WebServlet("/person/AddAddress")
+public class AddAddress extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Constructor of the object.
+	 */
+	public AddAddress() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
+
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		String userID=request.getParameter("userID");
+		UseracceptinfoDao uaDao=new UseracceptinfoDao();
+		ArrayList<AcceptinfoBean> acceptinfoList=uaDao.selectAcceptinfoByUserID(((UserBean) request.getSession().getAttribute("user")).getUserID());
+		request.getSession().setAttribute("acceptinfoList", acceptinfoList);
+		response.sendRedirect("Address.jsp");
+	}
+
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		String acceptname=request.getParameter("acceptname");
+		String phone=request.getParameter("phone");
+		String address1=request.getParameter("select1");
+		String address2=request.getParameter("select2");
+		String intro=request.getParameter("userintro");
+		String address=address1+" "+address2+" "+intro;
+		UserBean user=(UserBean) request.getSession().getAttribute("user");
+		UseracceptinfoDao uaDao=new UseracceptinfoDao();
+		AcceptinfoBean acceptinfo=uaDao.insertAcceptinfo(user.getUserID(), acceptname, phone, address);
+		if(acceptinfo != null)
+			request.getSession().setAttribute("acceptinfo", acceptinfo);
+		ArrayList<AcceptinfoBean> acceptinfoList=uaDao.selectAcceptinfoByUserID(user.getUserID());
+		request.getSession().setAttribute("acceptinfoList", acceptinfoList);
+		response.sendRedirect("Address.jsp");
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
+	}
+
+}

@@ -15,8 +15,8 @@ p.am-form-help{ font-size:14px;font-weight: 600; margin:0px auto; position:absol
 .am-form-horizontal .am-form-label{padding-top:8px ;text-align:left ;}
 .am-form textarea,.am-form select, .am-form textarea, .am-form input[type="text"], .am-form input[type="password"], .am-form input[type="datetime"], .am-form input[type="datetime-local"], .am-form input[type="date"], .am-form input[type="month"], .am-form input[type="time"], .am-form input[type="week"], .am-form input[type="tel"], .am-form input[type="email"], .am-form input[type="url"], .am-form input[type="search"], .am-form input[type="tel"], .am-form input[type="color"], .am-form-field,.am-btn{ font-size:14px;}
 .birth-select,.birth-select2 {float:left; margin-right:5px; vertical-align:middle;}
-.birth-select select{float:left; width:60px;background: none;border:none ;padding-top:9px ;}
-.birth-select2 select{float:left; width:40px;background: none;border: none;padding-top:9px ;}
+.birth-select select{float:left; width:60px;background: none;border:none ;padding-top:9px ;size="5";multiple="multiple"}
+.birth-select2 select{float:left; width:40px;background: none;border: none;padding-top:9px ;size="5";multiple="multiple"}
 
 .birth button{border:none}
 .birth .am-selected-icon::before{opacity: 0;}

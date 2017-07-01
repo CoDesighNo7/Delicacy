@@ -16,7 +16,7 @@ public class UserinfoDao extends BaseDao {
 			while (resultSet.next()) {
 				user.setUserID(resultSet.getString("userID"));
 				user.setUserName(resultSet.getString("userName"));
-				user.setUserAge(resultSet.getInt("userAge"));
+				user.setUserBirth(resultSet.getDate("userBirth").toString());
 				user.setPhoneNumber(resultSet.getString("userPhone"));
 				user.setMail(resultSet.getString("userMail"));
 				user.setInvitation(resultSet.getString("invitation"));
@@ -102,6 +102,7 @@ public class UserinfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		if (resultRow == 1) {
 			user.setUserID(id);
 			user.setMail(mail);
@@ -111,7 +112,23 @@ public class UserinfoDao extends BaseDao {
 		} else
 			return null;
 	}
-
+	//修改用户信息
+	public int updateUserinfo(String userID,String userName,String userSex,String userBirth){
+		String sql="update userinfo set userName=?,userSex=?,userBirth=? where userID=?";
+		try {
+			this.getConnection(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userSex);
+			pstmt.setString(3, userBirth);
+			pstmt.setString(4, userID);
+			resultRow=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		close();
+		return resultRow;
+	}
 
 	// 删除用户信息，以用户ID为查找依据，若删除成功，则返回1
 	public int deleteUserByID() {
