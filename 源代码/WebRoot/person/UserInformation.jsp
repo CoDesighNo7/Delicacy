@@ -191,9 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 								</div>
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger">
-										<input type="submit" value="保存修改">
-									保存修改</div>
+										<input type="submit" value="保存修改" class="am-btn am-btn-danger">
 									
 								</div>
 
@@ -215,6 +213,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="#">个人资料</a>
 						<ul>
 							<li> <a href="/delicacy/person/AddAddress?userID=${user.getUserID()}">收货地址</a></li>
+						</ul>
+						<ul>
+							<li> <a href="Alterpassword.jsp">修改密码</a></li>
 						</ul>
 					</li>
 					<li class="person">

@@ -55,4 +55,22 @@ public class LogininfoDao extends BaseDao {
 		close();
 		return resultRow;
 	}
+	//ÐÞ¸ÄÃÜÂë
+	public boolean updatePassword(String id,String password){
+		String sql="update logininfo set password=? where id=?";
+		try {
+			this.getConnection(sql);
+			pstmt.setString(1, password);
+			pstmt.setString(2, id);
+			resultRow=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		close();
+		if(resultRow==1)
+			return true;
+		else
+			return false;
+	}
 }

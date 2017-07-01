@@ -154,6 +154,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 							<li> <a href="/delicacy/person/AddAddress?userID=${user.getUserID() }">收货地址</a></li>
 						</ul>
+						<ul>
+							<li> <a href="Alterpassword.jsp">修改密码</a></li>
+						</ul>
 					</li>
 					<li class="person">
 						<a href="#">我的交易</a>
