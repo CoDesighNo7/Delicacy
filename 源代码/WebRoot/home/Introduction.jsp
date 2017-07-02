@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>"E:/1/amz_02_adp/one/home/pay.html"
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <jsp:include page="/home/Header.jsp" />
+   	<jsp:include page="/home/Header.jsp" />
 			<div class="clear"></div>
             <b class="line"></b>
 			<div class="listMain">
@@ -95,16 +95,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a href="#"><img src="../images/01_small.jpg" mid="../images/01_mid.jpg" big="../images/01.jpg"></a>
 									</div>
 								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/02_small.jpg" mid="../images/02_mid.jpg" big="../images/02.jpg"></a>
-									</div>
-								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/03_small.jpg" mid="../images/03_mid.jpg" big="../images/03.jpg"></a>
-									</div>
-								</li>
 							</ul>
 						</div>
 
@@ -116,9 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
-	          </h1>
+							<h1>良品铺子 手剥松子218g 坚果炒货 巴西松子 </h1>
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->

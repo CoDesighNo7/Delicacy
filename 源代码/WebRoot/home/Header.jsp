@@ -9,22 +9,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-
-<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet"
-	type="text/css">
-<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet"
-	type="text/css">
-
-<link href="../css/personal.css" rel="stylesheet" type="text/css">
-<link href="../css/infstyle.css" rel="stylesheet" type="text/css">
-<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"
-	type="text/javascript"></script>
-<script src="../AmazeUI-2.4.2/assets/js/amazeui.js"
-	type="text/javascript"></script>
-</head>
-
 <body>
 	<!--头 -->
 	<div class="mt-logo">
@@ -33,8 +17,9 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="/delicacy/person/UserInformation.jsp" target="_top" class="h">${user.getUserName() }</a> 
-						<a href="/delicacy/home/Register.jsp" target="_top">免费注册</a>
+						<a href="/delicacy/person/UserInformation.jsp" target="_top"
+							class="h">${user.getUserName() }</a> <a
+							href="/delicacy/home/Register.jsp" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
@@ -46,15 +31,15 @@
 				</div>
 				<div class="topMessage my-shangcheng">
 					<div class="menu-hd MyShangcheng">
-						<a href="/delicacy/person/UserInformation.jsp" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+						<a href="/delicacy/person/UserInformation.jsp" target="_top"><i
+							class="am-icon-user am-icon-fw"></i>个人中心</a>
 					</div>
 				</div>
 				<div class="topMessage mini-cart">
 					<div class="menu-hd">
 						<a id="mc-menu-hd" href="#" target="_top"><i
 							class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
-							id="J_MiniCartNum" class="h">0</strong>
-						</a>
+							id="J_MiniCartNum" class="h">0</strong> </a>
 					</div>
 				</div>
 				<div class="topMessage favorite">
@@ -69,17 +54,14 @@
 
 		<div class="nav white">
 			<div class="logoBig">
-				<li><img src="../images/logobig.png" />
-				</li>
+				<li><img src="../images/logobig.png" /></li>
 			</div>
 
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>
-				<form>
-					<input id="searchInput" name="index_none_header_sysc" type="text"
-						placeholder="搜索" autocomplete="off"> <input
-						id="ai-topsearch" class="submit am-btn" value="搜索" index="1"
-						type="submit">
+				<form action="SearchServlet" method="post">
+					<input id="searchInput" name="searchword" type="text" placeholder="搜索" autocomplete="off"> 
+					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 				</form>
 			</div>
 		</div>

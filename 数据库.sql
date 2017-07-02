@@ -113,7 +113,7 @@ alter table commodityEvaluate add constraint foreign key (commodityID) reference
 alter table commodityEvaluate add constraint foreign key (userID) references userinfo(userID) on delete cascade;
 
 CREATE TABLE sourceinfo(
-	sourceID VARCHAR(20) PRIMARY KEY,
+	sourceID INT PRIMARY KEY,
     sourceName VARCHAR(100) NOT NULL,
     sourceAddress VARCHAR(100) NOT NULL,
     describeMark FLOAT NOT NULL,
@@ -122,11 +122,11 @@ CREATE TABLE sourceinfo(
 
 CREATE TABLE sourcePicture(
 	s_pictureID VARCHAR(20) PRIMARY KEY,
-    sourceID VARCHAR(20) NOT NULL,
+    sourceID INT NOT NULL,
     pictureURL VARCHAR(100) NOT NULL,
     pictureInfo VARCHAR(100) NOT NULL,
     FOREIGN KEY (sourceID) REFERENCES sourceinfo(sourceID) ON DELETE CASCADE
-);
+);	
 alter table sourcePicture add constraint foreign key (sourceID) references sourceinfo(sourceID) on delete cascade;
 
 CREATE TABLE warehouseSite(
