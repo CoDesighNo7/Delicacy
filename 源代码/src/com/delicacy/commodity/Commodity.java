@@ -1,5 +1,6 @@
 package com.delicacy.commodity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Commodity {
@@ -14,7 +15,18 @@ public class Commodity {
 	private String kind;				//商品类别
 	private String info;				//商品描述
 	private float price;				//单价
-	private Date expirationDate;		//保质期	
+	private float nowPrice;				//现价
+	private String expirationDate;		//保质期	
+	public float getNowPrice() {
+		return nowPrice;
+	}
+	public void setNowPrice() {
+		Date now=new Date();
+		SimpleDateFormat dateformat=new SimpleDateFormat("yyyy/mm/dd");
+		long diff=now.getTime()-this.InTime.getTime();
+		long days=diff/(1000*60*60*24);
+		this.nowPrice=(float) (this.price*(1.0-Float.parseFloat(String.valueOf(days))/Integer.parseInt(expirationDate)));
+	}
 	public float getInventory() {
 		return inventory;
 	}
@@ -81,10 +93,10 @@ public class Commodity {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Date getExpirationDate() {
+	public String getExpirationDate() {
 		return expirationDate;
 	}
-	public void setExpirationDate(Date expirationDate) {
+	public void setExpirationDate(String expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 	

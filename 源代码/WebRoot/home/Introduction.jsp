@@ -35,11 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!--分类-->
 			
-				<ol class="am-breadcrumb am-breadcrumb-slash">
-					<li><a href="#">首页</a></li>
-					<li><a href="#">分类</a></li>
-					<li class="am-active">内容</li>
-				</ol>
+				<br>
+				<br>
+				<br>
 				<script type="text/javascript">
 					$(function() {});
 					$(window).load(function() {
@@ -56,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="flexslider">
 							<ul class="slides">
 								<li>
-									<img src="../images/01.jpg" title="pic" />
+									<img src="${commodity.getPictureURL() }" title="pic" />
 								</li>
 								<li>
 									<img src="../images/02.jpg" />
@@ -87,12 +85,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="../images/01.jpg"><img src="../images/01_mid.jpg" alt="细节展示放大镜特效" rel="../images/01.jpg" class="jqzoom" /></a>
+								<a href="../images/01.jpg"><img src="${commodity.getPictureURL() }" alt="细节展示放大镜特效" rel="${commodity.getPictureURL() }" class="jqzoom" /></a>
 							</div>
 							<ul class="tb-thumb" id="thumblist">
 								<li class="tb-selected">
 									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/01_small.jpg" mid="../images/01_mid.jpg" big="../images/01.jpg"></a>
+										<a href="#"><img src="${commodity.getPictureURL() }" mid="${commodity.getPictureURL() }" big="${commodity.getPictureURL() }"></a>
 									</div>
 								</li>
 							</ul>
@@ -106,55 +104,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>良品铺子 手剥松子218g 坚果炒货 巴西松子 </h1>
+							<h1>${commodity.getName() } </h1>
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
-									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
+									<dt>单价</dt>
+									<dd><em>¥</em><b class="sys_item_price">${commodity.getNowPrice() }</b>  </dd>                                 
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>									
+									<dd><em>¥</em><b class="sys_item_mktprice">${commodity.getPrice() }</b></dd>									
 								</li>
 								<div class="clear"></div>
 							</div>
 
-							<!--地址-->
-							<dl class="iteminfo_parameter freight">
-								<dt>配送至</dt>
-								<div class="iteminfo_freprice">
-									<div class="am-form-content address">
-										<select data-am-selected>
-											<option value="a">浙江省</option>
-											<option value="b">湖北省</option>
-										</select>
-										<select data-am-selected>
-											<option value="a">温州市</option>
-											<option value="b">武汉市</option>
-										</select>
-										<select data-am-selected>
-											<option value="a">瑞安区</option>
-											<option value="b">洪山区</option>
-										</select>
-									</div>
-									<div class="pay-logis">
-										快递<b class="sys_item_freprice">10</b>元
-									</div>
-								</div>
-							</dl>
 							<div class="clear"></div>
 
 							<!--销量-->
 							<ul class="tm-ind-panel">
-								<li class="tm-ind-item tm-ind-sellCount canClick">
-									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>
-								</li>
-								<li class="tm-ind-item tm-ind-sumCount canClick">
-									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
-								</li>
+								
 								<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
 									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
 								</li>
@@ -180,29 +150,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<div class="theme-signin-left">
 
 													<div class="theme-options">
-														<div class="cart-title">口味</div>
-														<ul>
-															<li class="sku-line selected">原味<i></i></li>
-															<li class="sku-line">奶油<i></i></li>
-															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
-														</ul>
-													</div>
-													<div class="theme-options">
-														<div class="cart-title">包装</div>
-														<ul>
-															<li class="sku-line selected">手袋单人份<i></i></li>
-															<li class="sku-line">礼盒双人份<i></i></li>
-															<li class="sku-line">全家福礼包<i></i></li>
-														</ul>
-													</div>
-													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<dd>
 															<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 															<input id="text_box" name="" type="text" value="1" style="width:30px;" />
 															<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-															<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+															<span id="Stock" class="tb-hidden">库存<span class="stock">${commodity.getInventory() }</span></span>
 														</dd>
 
 													</div>
@@ -313,34 +266,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<h4>产品参数：</h4></div>
 										<div class="clear"></div>
 										<ul id="J_AttrUL">
-											<li title="">产品类型:&nbsp;烘炒类</li>
-											<li title="">原料产地:&nbsp;巴基斯坦</li>
-											<li title="">产地:&nbsp;湖北省武汉市</li>
-											<li title="">配料表:&nbsp;进口松子、食用盐</li>
-											<li title="">产品规格:&nbsp;210g</li>
-											<li title="">保质期:&nbsp;180天</li>
-											<li title="">产品标准号:&nbsp;GB/T 22165</li>
-											<li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li>
-											<li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存 </li>
-											<li title="">食用方法：&nbsp;开袋去壳即食</li>
+											<li title="">产品类型:&nbsp;${commodity.getKind() }</li>
+											<li title="">产地:&nbsp;${commodity.getSourceName() }</li>
+											<li title="">保质期:&nbsp;${commodity.getExpirationDate() }天</li>
+											<li title="">储存方法：&nbsp;请尽快食用或冷藏保存  </li>
 										</ul>
 										<div class="clear"></div>
 									</div>
 
-									<div class="details">
-										<div class="attr-list-hd after-market-hd">
-											<h4>商品细节</h4>
-										</div>
-										<div class="twlistNews">
-											<img src="../images/tw1.jpg" />
-											<img src="../images/tw2.jpg" />
-											<img src="../images/tw3.jpg" />
-											<img src="../images/tw4.jpg" />
-											<img src="../images/tw5.jpg" />
-											<img src="../images/tw6.jpg" />
-											<img src="../images/tw7.jpg" />
-										</div>
-									</div>
 									<div class="clear"></div>
 
 								</div>
@@ -351,20 +284,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     	<div class="rate">                
                                     		<strong>100<span>%</span></strong><br> <span>好评度</span>            
                                     	</div>
-                                        <dl>                    
-                                            <dt>买家印象</dt>                    
-                                            <dd class="p-bfc">
-                                            			<q class="comm-tags"><span>味道不错</span><em>(2177)</em></q>
-                                            			<q class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q>
-                                            			<q class="comm-tags"><span>口感好</span><em>(1823)</em></q>
-                                            			<q class="comm-tags"><span>商品不错</span><em>(1689)</em></q>
-                                            			<q class="comm-tags"><span>香脆可口</span><em>(1488)</em></q>
-                                            			<q class="comm-tags"><span>个个开口</span><em>(1392)</em></q>
-                                            			<q class="comm-tags"><span>价格便宜</span><em>(1119)</em></q>
-                                            			<q class="comm-tags"><span>特价买的</span><em>(865)</em></q>
-                                            			<q class="comm-tags"><span>皮很薄</span><em>(831)</em></q> 
-                                            </dd>                                           
-                                         </dl> 
+                                        
                                     </div>	
                                     <div class="clear"></div>
 									<div class="tb-r-filter-bar">

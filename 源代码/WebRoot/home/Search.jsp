@@ -102,7 +102,8 @@
 							<li>
 								<div class="i-pic limit">
 									<img src="${commodity.getPictureURL() }" />
-									<p class="title fl">${commodity.getInfo() }</p>
+									<p class="title fl" ><a href="/delicacy/home/IntroductionServlet?commodityID=${commodity.getId() }">${commodity.getInfo() }</a></p>
+									
 									<p class="price fl">
 										<b>¥</b> <strong>${commodity.getPrice() }</strong>
 									</p>
