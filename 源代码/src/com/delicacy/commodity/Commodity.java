@@ -16,7 +16,29 @@ public class Commodity {
 	private String info;				//商品描述
 	private float price;				//单价
 	private float nowPrice;				//现价
-	private String expirationDate;		//保质期	
+	private String expirationDate;		//保质期
+	private float count;				//加入购物车的数量
+	private float amont;				//加入购物车的商品金额
+
+	public float getAmont() {
+		return amont;
+	}
+
+	public void setAmont() {
+		this.amont = this.nowPrice*this.count;
+	}
+
+	public void setNowPrice(float nowPrice) {
+		this.nowPrice = nowPrice;
+	}
+
+	public float getCount() {
+		return count;
+	}
+
+	public void setCount(float count) {
+		this.count = count;
+	}
 	public float getNowPrice() {
 		return nowPrice;
 	}

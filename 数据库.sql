@@ -82,7 +82,7 @@ CREATE TABLE orderCommodity(
     FOREIGN KEY (orderID) REFERENCES userinfo(userID) ON DELETE CASCADE,
     FOREIGN KEY (commodityID) REFERENCES commodityinfo(commodityID) ON DELETE CASCADE
 );
-alter table orderCommodity add constraint foreign key (orderID) references userinfo(userID) on delete cascade;
+alter table orderCommodity add constraint foreign key (orderID) references userOrder(u_orderID) on delete cascade;
 alter table orderCommodity add constraint foreign key (commodityID) references commodityinfo(commodityID) on delete cascade;
 
 

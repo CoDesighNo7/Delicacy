@@ -3,7 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.delicacy.evaluate.*" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -126,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="tm-ind-panel">
 								
 								<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
+									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">${commodityEvaluateList.size() }</span></div>
 								</li>
 							</ul>
 							<div class="clear"></div>
@@ -145,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<a href="javascript:;" title="关闭" class="close">×</a>
 										</div>
 										<div class="theme-popbod dform">
-											<form class="theme-signin" name="loginform" action="" method="post">
+											<form class="theme-signin" name="loginform" action="AddCart" method="post">
 
 												<div class="theme-signin-left">
 
@@ -153,12 +154,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<div class="cart-title number">数量</div>
 														<dd>
 															<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
-															<input id="text_box" name="" type="text" value="1" style="width:30px;" />
+															<input id="text_box" name="count" type="text" value="1" style="width:30px;" />
 															<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
 															<span id="Stock" class="tb-hidden">库存<span class="stock">${commodity.getInventory() }</span></span>
 														</dd>
 
 													</div>
+													<div class="pay">
+							<div class="pay-opt">
+							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
+							
+							</div>
+							<li>
+								<div class="clearfix tb-btn tb-btn-buy theme-login">
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+								</div>
+							</li>
+							<li>
+								<div class="clearfix tb-btn tb-btn-basket theme-login">
+									<input type="submit" value="加入购物车">
+									<a id="LikBasket" title="加入购物车" href="/delicacy/home/AddCart?count="><i></i>加入购物车</a>
+								</div>
+							</li>
+						</div>
 													<div class="clear"></div>
 
 													<div class="btn-op">
@@ -186,42 +205,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!--活动	-->
 							<div class="shopPromotion gold">
 								<div class="hot">
-									<dt class="tb-metatit">店铺优惠</dt>
+									<dt class="tb-metatit">商品详情</dt>
 									<div class="gold-list">
-										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
+										<p>${commodity.getInfo() }</p>
 									</div>
 								</div>
 								<div class="clear"></div>
-								<div class="coupon">
-									<dt class="tb-metatit">优惠券</dt>
-									<div class="gold-list">
-										<ul>
-											<li>125减5</li>
-											<li>198减10</li>
-											<li>298减20</li>
-										</ul>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 
-						<div class="pay">
-							<div class="pay-opt">
-							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
-							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
-							
-							</div>
-							<li>
-								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
-								</div>
-							</li>
-							<li>
-								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
-								</div>
-							</li>
-						</div>
+						
 
 					</div>
 
@@ -292,34 +286,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<li class="tb-taglist-li tb-taglist-li-current">
 												<div class="comment-info">
 													<span>全部评价</span>
-													<span class="tb-tbcr-num">(32)</span>
+													<span class="tb-tbcr-num">${commodityEvaluateList.size() }</span>
 												</div>
 											</li>
 
-											<li class="tb-taglist-li tb-taglist-li-1">
-												<div class="comment-info">
-													<span>好评</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
-
-											<li class="tb-taglist-li tb-taglist-li-0">
-												<div class="comment-info">
-													<span>中评</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
-
-											<li class="tb-taglist-li tb-taglist-li--1">
-												<div class="comment-info">
-													<span>差评</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
 										</ul>
 									</div>
 									<div class="clear"></div>
 
+									<c:forEach var="evaluate" items="${commodityEvaluateList }" varStatus="status">
 									<ul class="am-comments-list am-comments-list-flip">
 										<li class="am-comment">
 											<!-- 评论容器 -->
@@ -334,20 +309,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<!--<h3 class="am-comment-title">评论标题</h3>-->
 													<div class="am-comment-meta">
 														<!-- 评论元数据 -->
-														<a href="#link-to-user" class="am-comment-author">b***1 (匿名)</a>
+														<a href="#link-to-user" class="am-comment-author"> ${evaluate.getUserID()}(匿名) </a>
 														<!-- 评论者 -->
 														评论于
-														<time datetime="">2015年11月02日 17:46</time>
+														<time datetime="">${evaluate.getTime() }</time>
 													</div>
 												</header>
 
 												<div class="am-comment-bd">
 													<div class="tb-rev-item " data-id="255776406962">
 														<div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-															摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！
-														</div>
-														<div class="tb-r-act-bar">
-															颜色分类：柠檬黄&nbsp;&nbsp;尺码：S
+															${evaluate.getEvaluate() }
 														</div>
 													</div>
 
@@ -357,6 +329,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</li>
 
 									</ul>
+									</c:forEach>
 
 									<div class="clear"></div>
 

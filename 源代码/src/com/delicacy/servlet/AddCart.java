@@ -2,7 +2,6 @@ package com.delicacy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.delicacy.commodity.Commodity;
-import com.delicacy.dao.CommodityDao;
-import com.delicacy.dao.EvaluateDao;
-import com.delicacy.evaluate.CommodityEvaluate;
+import com.delicacy.dao.CartDao;
+import com.delicacy.user.UserBean;
 
-public class IntroductionServlet extends HttpServlet {
+public class AddCart extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public IntroductionServlet() {
+	public AddCart() {
 		super();
 	}
 
@@ -45,12 +43,18 @@ public class IntroductionServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		String commodityID=request.getParameter("commodityID");
-		Commodity commodity=new CommodityDao().selectCommodityByID(Integer.parseInt(commodityID));
-		ArrayList<CommodityEvaluate> commodityEvaluateList=new EvaluateDao().selectCommodityEvaluate(Integer.parseInt(commodityID));
-		request.getSession().setAttribute("commodity", commodity);
-		request.getSession().setAttribute("commodityEvaluateList", commodityEvaluateList);
-		response.sendRedirect("Introduction.jsp");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the GET method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -67,6 +71,22 @@ public class IntroductionServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
+		Commodity commodity=(Commodity) request.getSession().getAttribute("commodity");
+		UserBean user=(UserBean)request.getSession().getAttribute("user");
+		String userID=user.getUserID();
+		String count=request.getParameter("count");
+		boolean result=false;
+		CartDao cartdao=new CartDao();
+		if(cartdao.confirmCount(commodity.getId(), Float.parseFloat(count)))
+			result=cartdao.insertCart(userID, commodity, Float.parseFloat(count));
+		
+		if(result)
+			response.sendRedirect("Cart.jsp");
+		else
+		{
+			request.setAttribute("message", "ÃÌº” ß∞‹");
+			response.sendRedirect("Introduction.jsp");
+		}
 	}
 
 	/**

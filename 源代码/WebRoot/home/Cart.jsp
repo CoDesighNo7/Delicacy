@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -52,11 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="clear"></div>
 
+						
 					<tr class="item-list">
 						<div class="bundle  bundle-last ">
-							
 							<div class="clear"></div>
 							<div class="bundle-main">
+								<c:forEach var="commodity" items="${cart.getCommodityList() }">
 								<ul class="item-content clearfix">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
@@ -66,20 +68,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</li>
 									<li class="td td-item">
 										<div class="item-pic">
-											<a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="../images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+											<a href="#" target="_blank" data-title="${commodity.getInfo() }" class="J_MakePoint" data-point="tbcart.8.12">
+												<img src="../images/huolongguo2.jpg" class="itempic J_ItemImg"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
-												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+												<a href="#" target="_blank" title="${commodity.getInfo() }" class="item-title J_MakePoint" data-point="tbcart.8.11">${commodity.getInfo() }</a>
 											</div>
 										</div>
 									</li>
 									<li class="td td-info">
 										<div class="item-props item-props-can">
-											<span class="sku-line">颜色：12#川南玛瑙</span>
-											<span class="sku-line">包装：裸装</span>
-											<span tabindex="0" class="btn-edit-sku theme-login">修改</span>
 											<i class="theme-login am-icon-sort-desc"></i>
 										</div>
 									</li>
@@ -87,10 +86,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original">78.00</em>
+													<em class="price-original">${commodity.getPrice() }</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">39.00</em>
+													<em class="J_Price price-now" tabindex="0">${commodity.getNowPrice() }</em>
 												</div>
 											</div>
 										</div>
@@ -100,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="item-amount ">
 												<div class="sl">
 													<input class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" name="" type="text" value="3" style="width:30px;" />
+													<input class="text_box" name="" type="text" value="${commodity.getCount() }" style="width:30px;" />
 													<input class="add am-btn" name="" type="button" value="+" />
 												</div>
 											</div>
@@ -108,27 +107,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">117.00</em>
+											<em tabindex="0" class="J_ItemSum number">${commodity.getAmont() }</em>
 										</div>
 									</li>
 									<li class="td td-op">
 										<div class="td-inner">
-											<a title="移入收藏夹" class="btn-fav" href="#">
-                  移入收藏夹</a>
-											<a href="javascript:;" data-point-url="#" class="delete">
-                  删除</a>
+											<a title="移入收藏夹" class="btn-fav" href="#"> 移入收藏夹</a>
+											<a href="javascript:;" data-point-url="#" class="delete"> 删除</a>
 										</div>
 									</li>
 								</ul>
-								
-								
-								
-								
-		
-													
-								
-								
-								
+							</c:forEach>
 							</div>
 						</div>
 					</tr>

@@ -5,6 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -17,9 +18,14 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="/delicacy/person/UserInformation.jsp" target="_top"
-							class="h">${user.getUserName() }</a> <a
-							href="/delicacy/home/Register.jsp" target="_top">免费注册</a>
+						<c:if test="${user==null }">
+							<a href="/delicacy/home/Login.jsp" target="_top" class="h">请登录</a>
+						</c:if>
+						<c:if test="${user!=null }">
+						<a href="/delicacy/person/UserInformation.jsp" target="_top" class="h">${user.getUserName() }</a> 
+						</c:if>
+						
+						<a href="/delicacy/home/Register.jsp" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
@@ -37,7 +43,7 @@
 				</div>
 				<div class="topMessage mini-cart">
 					<div class="menu-hd">
-						<a id="mc-menu-hd" href="#" target="_top"><i
+						<a id="mc-menu-hd" href="/delicacy/home/ToCartServlet?userID=${user.getUserID() }" target="_top"><i
 							class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
 							id="J_MiniCartNum" class="h">0</strong> </a>
 					</div>

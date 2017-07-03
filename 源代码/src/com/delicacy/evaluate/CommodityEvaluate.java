@@ -3,32 +3,32 @@ package com.delicacy.evaluate;
 import java.util.Date;
 
 public class CommodityEvaluate {
-	private String commodityName;
-	private String commodityID;
-	private String sourceID;
+	private String commodityName;		//评价商品名
+	private int commodityID;			//评价商品ID
+	private int sourceID;
 	private String userID;
 	private Float describeMark;
 	private Float qualityMark;
 	private Float deliverMark;
 	private String evaluate;
 	private String addevaluate;
-	private Date Time;
+	private Date time;
 	public String getCommodityName() {
 		return commodityName;
 	}
 	public void setCommodityName(String commodityName) {
 		this.commodityName = commodityName;
 	}
-	public String getCommodityID() {
+	public int getCommodityID() {
 		return commodityID;
 	}
-	public void setCommodityID(String commodityID) {
+	public void setCommodityID(int commodityID) {
 		this.commodityID = commodityID;
 	}
-	public String getSourceID() {
+	public int getSourceID() {
 		return sourceID;
 	}
-	public void setSourceID(String sourceID) {
+	public void setSourceID(int sourceID) {
 		this.sourceID = sourceID;
 	}
 	public String getUserID() {
@@ -68,10 +68,10 @@ public class CommodityEvaluate {
 		this.addevaluate = addevaluate;
 	}
 	public Date getTime() {
-		return Time;
+		return time;
 	}
 	public void setTime(Date time) {
-		Time = time;
+		this.time = time;
 	}
 	
 

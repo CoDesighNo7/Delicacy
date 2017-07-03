@@ -2,24 +2,22 @@ package com.delicacy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.delicacy.commodity.Commodity;
-import com.delicacy.dao.CommodityDao;
-import com.delicacy.dao.EvaluateDao;
-import com.delicacy.evaluate.CommodityEvaluate;
+import com.delicacy.cart.Cart;
+import com.delicacy.dao.CartDao;
+import com.delicacy.user.UserBean;
 
-public class IntroductionServlet extends HttpServlet {
+public class ToCartServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public IntroductionServlet() {
+	public ToCartServlet() {
 		super();
 	}
 
@@ -45,12 +43,13 @@ public class IntroductionServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		String commodityID=request.getParameter("commodityID");
-		Commodity commodity=new CommodityDao().selectCommodityByID(Integer.parseInt(commodityID));
-		ArrayList<CommodityEvaluate> commodityEvaluateList=new EvaluateDao().selectCommodityEvaluate(Integer.parseInt(commodityID));
-		request.getSession().setAttribute("commodity", commodity);
-		request.getSession().setAttribute("commodityEvaluateList", commodityEvaluateList);
-		response.sendRedirect("Introduction.jsp");
+		//UserBean user=(UserBean)request.getSession().getAttribute("user");
+		String userID=request.getParameter("userID");
+		Cart cart=new Cart();
+		cart=new CartDao().selectCartByUserID(userID);
+		
+		request.getSession().setAttribute("cart", cart);
+		response.sendRedirect("Cart.jsp");
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class IntroductionServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
+		
 	}
 
 	/**
