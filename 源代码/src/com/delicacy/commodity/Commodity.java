@@ -19,6 +19,16 @@ public class Commodity {
 	private String expirationDate;		//保质期
 	private float count;				//加入购物车的数量
 	private float amont;				//加入购物车的商品金额
+	private int warehouseID;			//商品在库存中的ID
+
+	public int getWarehouseID() {
+		return warehouseID;
+	}
+
+	public void setWarehouseID(int warehouseID) {
+		this.warehouseID = warehouseID;
+	}
+
 
 	public float getAmont() {
 		return amont;

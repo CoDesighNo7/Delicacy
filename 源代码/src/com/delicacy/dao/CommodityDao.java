@@ -9,7 +9,7 @@ public class CommodityDao extends BaseDao {
 	//查询商品，返回商品列表
 	public ArrayList<Commodity> selectCommodityList(String kind,String name){
 		ArrayList<Commodity> commodityList=new ArrayList<Commodity>();
-		String sql="select commodityinfo.commodityID,commodityName,pictureURL,commodityKind,commodityPrice,commodityInfo,inventory,inTime,expirationDate "+
+		String sql="select commodityinfo.commodityID,commodityName,pictureURL,commodityKind,commodityPrice,commodityInfo,inventory,inTime,expirationDate,warehouseID "+
 "from commodityinfo join warehouseInfo on commodityinfo.commodityID=warehouseInfo.commodityID";
 		if(!kind.equals("")&&name.equals("")){
 			sql+=" where commodityKind=?";
@@ -37,6 +37,7 @@ public class CommodityDao extends BaseDao {
 				c.setInventory(resultSet.getFloat(7));
 				c.setInTime(resultSet.getDate(8));
 				c.setExpirationDate(resultSet.getString(9));
+				c.setWarehouseID(resultSet.getInt(10));
 				commodityList.add(c);
 			}
 		} catch (SQLException e) {
@@ -49,7 +50,7 @@ public class CommodityDao extends BaseDao {
 	//根据商品ID
 	public Commodity selectCommodityByID(int id){
 		Commodity commodity=new Commodity();
-		String sql="select commodityinfo.commodityID,commodityName,pictureURL,commodityKind,commodityPrice,commodityInfo,inventory,inTime,expirationDate,sourceID "+
+		String sql="select commodityinfo.commodityID,commodityName,pictureURL,commodityKind,commodityPrice,commodityInfo,inventory,inTime,expirationDate,sourceID,warehouseID "+
 "from commodityinfo join warehouseInfo on commodityinfo.commodityID=warehouseInfo.commodityID where commodityinfo.commodityID=?";
 		try {
 			this.getConnection(sql);
@@ -66,6 +67,7 @@ public class CommodityDao extends BaseDao {
 				commodity.setInTime(resultSet.getDate(8));
 				commodity.setExpirationDate(resultSet.getString(9));
 				commodity.setNowPrice();
+				commodity.setWarehouseID(resultSet.getInt("warehouseID"));
 				commodity.setSourceName(this.selectSourceNameByID(resultSet.getInt(10)));
 			}
 		} catch (SQLException e) {

@@ -8,17 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.delicacy.commodity.Commodity;
-import com.delicacy.dao.CartDao;
-import com.delicacy.dao.WareHouseDao;
-import com.delicacy.user.UserBean;
-
-public class AddCart extends HttpServlet {
+public class UpdateCartCount extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AddCart() {
+	public UpdateCartCount() {
 		super();
 	}
 
@@ -72,24 +67,9 @@ public class AddCart extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		Commodity commodity=(Commodity) request.getSession().getAttribute("commodity");
-		UserBean user=(UserBean)request.getSession().getAttribute("user");
-		String userID=user.getUserID();
-		String count=request.getParameter("count");
-		boolean result=false;
-		CartDao cartdao=new CartDao();
-		if(cartdao.confirmCount(commodity.getId(), Float.parseFloat(count))){
-			new WareHouseDao().redeceInventory(commodity.getWarehouseID(), Float.parseFloat(count),-1);
-			result=cartdao.insertCart(userID, commodity, Float.parseFloat(count));	
-		}
+		String count=request.getParameter("commodityCount");
 		
-		if(result)
-			response.sendRedirect("Cart.jsp");
-		else
-		{
-			request.setAttribute("message", "ÃÌº” ß∞‹");
-			response.sendRedirect("Introduction.jsp");
-		}
+		response.sendRedirect("Cart.jsp");
 	}
 
 	/**

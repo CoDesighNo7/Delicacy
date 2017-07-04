@@ -5,6 +5,10 @@ desc orderCommodity;
 
 select * from userOrder;
 select * from useracceptinfo;
+select * from cartinfo;
+#添加购物车
+
+
 
 select u_orderID,userOrder.userID,userinfo.userName,orderCommodity.commodityID,commodityinfo.commodityName,commodityCount,commodityAmont
 from userOrder join orderCommodity on userOrder.u_orderID=orderCommodity.orderID,userinfo,commodityinfo
