@@ -3,6 +3,7 @@ package com.delicacy.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MySQLConnect {
@@ -13,6 +14,7 @@ public class MySQLConnect {
 	
 	public Connection conn=null;
 	public PreparedStatement pstmt=null;
+	public ResultSet resultSet=null;
 	
 	public MySQLConnect(String sql){
 		try {

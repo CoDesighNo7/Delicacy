@@ -384,5 +384,6 @@ public class comIn extends JFrame {
 			sourcelist.add(s);
 			//id=conn.resultSet.getString("commodityID");
 		}
+		conn.close();
 	}
 }
