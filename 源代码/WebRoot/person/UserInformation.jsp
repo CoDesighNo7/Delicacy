@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<c:forEach var="birth-select" items="" varStatus="status">
 													
 												</c:forEach>
-												
+												<option value="${year }">${year }</option>
 												<option value="1988">1988</option>
 												<option value="1987">1987</option>
 											</select>
@@ -120,6 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										<div class="birth-select2">
 											<select data-am-selected name="birth_month">
+												<option value="${month }">${month }</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -135,7 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</select>
 											<em>月</em></div>
 										<div class="birth-select2">
-											<select data-am-selected size="5" name="birth_day" multiple="multiple">
+											<select data-am-selected size="5" name="birth_day" >
+												<option value="${day }">${day }</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -156,14 +158,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>
 									<div class="am-form-content">
-										<input id="userphone" placeholder="telephonenumber" type="tel">
+										<input id="userphone" value="${user.getPhoneNumber() }" placeholder="telephonenumber" type="tel">
 
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="usermail" placeholder="Email" type="email">
+										<input id="usermail" value="${user.getMail() }" placeholder="Email" type="email">
 
 									</div>
 								</div>

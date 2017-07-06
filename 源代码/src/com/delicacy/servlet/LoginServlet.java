@@ -2,6 +2,7 @@ package com.delicacy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,6 +57,7 @@ public class LoginServlet extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@SuppressWarnings("deprecation")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//获取表单信息
@@ -65,6 +67,14 @@ public class LoginServlet extends HttpServlet {
 		//判断用户登陆信息是否正确，若正确，跳转到主页。
 		if(logininfo.isCorrect(username, password, 1)){
 			UserBean user=new UserinfoDao().selectUserByID(username);
+			String birth=user.getUserBirth();
+			String [] b=birth.split("-");
+			int year=Integer.parseInt(b[0]);
+			int month=Integer.parseInt(b[1]);
+			int day=Integer.parseInt(b[2]);
+			request.getSession().setAttribute("year", year);
+			request.getSession().setAttribute("month", month);
+			request.getSession().setAttribute("day", day);
 			request.getSession().setAttribute("user", user);
 			response.sendRedirect("Home.jsp");
 		}

@@ -1,6 +1,8 @@
 package com.delicacy.user;
 
 public class AcceptinfoBean {
+	private int acceptinfoID;
+	private String userID;
 	private String acceptName;			//收货人姓名
 	private String acceptPhone;			//收货人手机号
 	private String acceptAddress;		//收货人地址，省（市）市（区）详细地址之间用空格隔开
@@ -18,6 +20,18 @@ public class AcceptinfoBean {
 		this.street=address[2];
 	}
 	
+	public int getAcceptinfoID(){
+		return acceptinfoID;
+	}
+	public void setAcceptinfoID(int acceptinfoID){
+		this.acceptinfoID=acceptinfoID;
+	}
+	public String getUserID(){
+		return userID;
+	}
+	public void setUserID(String userID){
+		this.userID=userID;
+	}
 	public String getProvince() {
 		return province;
 	}
